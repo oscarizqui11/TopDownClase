@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         _mv.MoveRB(direction.normalized);
 
         cameraDir.y = direction.normalized.y;
-        if(cameraDir.y > 0 && transform.position.y >= mainCamera.transform.position.y - 1)
+        if(cameraDir.y > 0 && transform.position.y >= mainCamera.transform.position.y + mainCamera.GetComponent<CameraController>().playerPosyOffset)
         {
             mainCamera.GetComponent<MovementBehavior>().MoveTowards(cameraDir);
         }

@@ -22,7 +22,7 @@ public class MapBehaviour : MonoBehaviour
     private void AdvanceMap()
     {
         //Debug.Log(mapsList[0].position);
-        mapsList[1].position += new Vector3(0, mapsList[2].position.y + mapsList[2].GetComponent<SpriteRenderer>().size.y / 2);
+        mapsList[1].position += new Vector3(0, mapsList[2].position.y + mapsList[2].GetComponent<SpriteRenderer>().size.y / 2 + mapsList[1].GetComponent<SpriteRenderer>().size.y / 2);
     }
 
     private void GetLowerMapTile()
