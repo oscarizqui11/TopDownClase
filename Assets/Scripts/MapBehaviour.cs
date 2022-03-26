@@ -6,14 +6,23 @@ public class MapBehaviour : MonoBehaviour
 {
     public static Transform[] mapsList;
 
+    public float tileDistanceOffset;
+
+    private Transform lowestMapTile;
+    private Transform topMapTile;
+    private static Camera mainCamera;
+
     private void Awake()
     {
         mapsList = GetComponentsInChildren<Transform>();
+        lowestMapTile = GetLowestMapTile();
+        topMapTile = GetTopMapTile();
+        mainCamera = Camera.main;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (lowestMapTile.position.y + lowestMapTile.GetComponent<SpriteRenderer>().size.y / 2 < mainCamera.transform.position.y - 2f * mainCamera.orthographicSize / 2f)
         {
             AdvanceMap();
         }
@@ -21,12 +30,47 @@ public class MapBehaviour : MonoBehaviour
 
     private void AdvanceMap()
     {
-        //Debug.Log(mapsList[0].position);
-        mapsList[1].position += new Vector3(0, mapsList[2].position.y + mapsList[2].GetComponent<SpriteRenderer>().size.y / 2 + mapsList[1].GetComponent<SpriteRenderer>().size.y / 2);
+        lowestMapTile.position += new Vector3(0,topMapTile.position.y - lowestMapTile.position.y + topMapTile.GetComponent<SpriteRenderer>().size.y / 2 + lowestMapTile.GetComponent<SpriteRenderer>().size.y / 2 + tileDistanceOffset);
+
+        lowestMapTile = GetLowestMapTile();
+        topMapTile = GetTopMapTile();
     }
 
-    private void GetLowerMapTile()
+    private Transform GetLowestMapTile()
     {
-        
+        Transform ret = mapsList[1];
+
+        int i = 2;
+
+        while(i < mapsList.Length)
+        {
+            if(mapsList[i].position.y < ret.position.y)
+            {
+                ret = mapsList[i];
+            }
+
+            i++;
+        }
+
+        return ret;
+    }
+
+    private Transform GetTopMapTile()
+    {
+        Transform ret = mapsList[1];
+
+        int i = 2;
+
+        while (i < mapsList.Length)
+        {
+            if (mapsList[i].position.y > ret.position.y)
+            {
+                ret = mapsList[i];
+            }
+
+            i++;
+        }
+
+        return ret;
     }
 }
