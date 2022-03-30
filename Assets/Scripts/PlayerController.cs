@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         {
             _anim.SetInteger("State", 2);
             GetComponent<ShootingBehaviour>().Shoot();
-            GetComponent<ShootingBehaviour>().shooted = true;
+            //GetComponent<ShootingBehaviour>().shooted = true;
         }
         else
         {

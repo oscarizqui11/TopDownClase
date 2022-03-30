@@ -19,7 +19,15 @@ public class MovementBehavior : MonoBehaviour
 
     public void MoveRB(Vector3 dir)
     {
-        GetComponent<Rigidbody2D>().MovePosition(transform.position + velocity * Time.fixedDeltaTime * dir);
+        if(!WillCollide(dir))
+        {
+            GetComponent<Rigidbody2D>().MovePosition(transform.position + velocity * Time.fixedDeltaTime * dir);
+        }
+    }
+
+    private bool WillCollide(Vector3 dir)
+    {
+        return false;
     }
 }
 

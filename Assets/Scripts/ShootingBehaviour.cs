@@ -31,7 +31,8 @@ public class ShootingBehaviour : MonoBehaviour
                 newBullet.transform.position = transform.position + transform.rotation * gunPosition;
                 newBullet.GetComponent<Bullets>().SetTarget(transform.rotation * spriteDirection);
                 newBullet.SetActive(true);
-                shooted = true;
+                //shooted = true;
+                GetComponent<AudioSource>().Play();
             }
         }
     }

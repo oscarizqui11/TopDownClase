@@ -9,6 +9,7 @@ public class Weapon
     public string Name;
     public float weapCadency;
     public string bulletType;
+    public AudioClip clipSource;
 }
 
 public class ArsenalManagement : MonoBehaviour
@@ -24,6 +25,7 @@ public class ArsenalManagement : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         _sprt = GetComponent<SpriteRenderer>();
+        GetComponent<AudioSource>().clip = arsenalWapons[0].clipSource;
     }
 
     void Update()
@@ -31,10 +33,12 @@ public class ArsenalManagement : MonoBehaviour
         if (Input.GetButtonDown("Arsenal_0"))
         {
             _anim.SetLayerWeight(1, 0);
+            GetComponent<AudioSource>().clip = arsenalWapons[0].clipSource;
         }
         else if (Input.GetButtonDown("Arsenal_1"))
         {
             _anim.SetLayerWeight(1, 1);
+            GetComponent<AudioSource>().clip = arsenalWapons[1].clipSource;
         }
     }
 }
