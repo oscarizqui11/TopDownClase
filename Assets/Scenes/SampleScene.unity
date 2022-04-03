@@ -831,6 +831,43 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9060877047246034859, guid: 231c58445b766bf46b29273e75c128be, type: 3}
   m_PrefabInstance: {fileID: 680321607}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &938942749 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6976033365374635248, guid: 795cd7db08af86d4db574f9a8ba22daf, type: 3}
+  m_PrefabInstance: {fileID: 6976033366052280103}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &938942757
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938942749}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.37739325, y: -0.08641648}
+  serializedVersion: 2
+  m_Radius: 0.6520214
+--- !u!58 &938942758
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938942749}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.21424007, y: -0.114261866}
+  serializedVersion: 2
+  m_Radius: 0.42357945
 --- !u!1 &949037969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,6 +1274,26 @@ PrefabInstance:
     - target: {fileID: 6976033365374635248, guid: 795cd7db08af86d4db574f9a8ba22daf, type: 3}
       propertyPath: m_Name
       value: Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976033365374635257, guid: 795cd7db08af86d4db574f9a8ba22daf, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7011023
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976033365374635257, guid: 795cd7db08af86d4db574f9a8ba22daf, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0541778
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976033365374635257, guid: 795cd7db08af86d4db574f9a8ba22daf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976033365374635257, guid: 795cd7db08af86d4db574f9a8ba22daf, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.20506382
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976033365374635257, guid: 795cd7db08af86d4db574f9a8ba22daf, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.083682775
       objectReference: {fileID: 0}
     - target: {fileID: 6976033365374635258, guid: 795cd7db08af86d4db574f9a8ba22daf, type: 3}
       propertyPath: m_RootOrder
