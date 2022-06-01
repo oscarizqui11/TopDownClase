@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShootingBehaviour : MonoBehaviour
 {
     public float cadency;
-    public GameObject SpitPool;
+    public GameObject BulletPool;
     public string shotType;
     public Vector3 gunPosition;
     public bool shooted;
@@ -13,10 +13,20 @@ public class ShootingBehaviour : MonoBehaviour
     private float time;
     private Vector3 spriteDirection;
 
-    private void Awake()
+    private void Start()
     {
-        int playerSprtAngle = GetComponent<PlayerController>().spriteRotation;
-        spriteDirection = new Vector3(Mathf.Cos(playerSprtAngle), Mathf.Sin(playerSprtAngle));
+        PlayerController _player;
+        Enemy _enemy;
+        if (TryGetComponent<PlayerController>(out _player))
+        {
+            int playerSprtAngle = _player.spriteRotation;
+            spriteDirection = new Vector3(Mathf.Cos(playerSprtAngle), Mathf.Sin(playerSprtAngle));
+        }
+        else if(TryGetComponent<Enemy>(out _enemy))
+        {
+            int enemySprtAngle = _enemy.spriteRotation;
+            spriteDirection = new Vector3(Mathf.Cos(enemySprtAngle), Mathf.Sin(enemySprtAngle));
+        }
     }
 
     public void Shoot()
@@ -32,13 +42,12 @@ public class ShootingBehaviour : MonoBehaviour
                 newBullet.GetComponent<Bullets>().SetTarget(transform.rotation * spriteDirection);
                 newBullet.SetActive(true);
                 //shooted = true;
-                GetComponent<AudioSource>().Play();
             }
         }
     }
 
     private void FixedUpdate()
     {
-        time = time + Time.deltaTime;
+        time = time + Time.fixedDeltaTime;
     }
 }

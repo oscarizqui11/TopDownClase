@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cadency: 0.2
-  SpitPool: {fileID: 1196801578891002240, guid: 021437b2b82511b429bc06c8adedd5c3, type: 3}
+  BulletPool: {fileID: 1196801578891002240, guid: 021437b2b82511b429bc06c8adedd5c3, type: 3}
   shotType: Bullet
   gunPosition: {x: 1.5, y: -0.55, z: 0}
   shooted: 0
@@ -246,7 +246,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9060877047246034859}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e5628647b4e792c48af3ffe3138a10f9, type: 3}

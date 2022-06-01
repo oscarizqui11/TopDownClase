@@ -14,12 +14,15 @@ public class PlayerController : MonoBehaviour
     public Vector3 direction;
     private Vector3 cameraDir;
 
+    private ShootingBehaviour _shb;
+
     // Start is called before the first frame update
     void Awake()
     {
         _anim = GetComponent<Animator>();
         _sprt = GetComponent<SpriteRenderer>();
         _mv = GetComponent<MovementBehavior>();
+        _shb = GetComponent<ShootingBehaviour>();
         mainCamera = Camera.main;
     }
     
@@ -44,16 +47,16 @@ public class PlayerController : MonoBehaviour
             _anim.SetBool("IsWalking", false);
         }
 
-        if(Input.GetButtonDown("Fire1") && !GetComponent<ShootingBehaviour>().shooted)
+        if(Input.GetButtonDown("Fire1") && !_shb.shooted)
         {
             _anim.SetInteger("State", 2);
-            GetComponent<ShootingBehaviour>().Shoot();
+            _shb.Shoot();
             //GetComponent<ShootingBehaviour>().shooted = true;
         }
         else
         {
             _anim.SetInteger("State", 0);
-            GetComponent<ShootingBehaviour>().shooted = false;
+            _shb.shooted = false;
         }
 
     }

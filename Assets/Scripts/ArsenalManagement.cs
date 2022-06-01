@@ -26,6 +26,7 @@ public class ArsenalManagement : MonoBehaviour
         _anim = GetComponent<Animator>();
         _sprt = GetComponent<SpriteRenderer>();
         GetComponent<AudioSource>().clip = arsenalWapons[0].clipSource;
+        GetComponent<ShootingBehaviour>().cadency = arsenalWapons[0].weapCadency;
     }
 
     void Update()
@@ -34,11 +35,15 @@ public class ArsenalManagement : MonoBehaviour
         {
             _anim.SetLayerWeight(1, 0);
             GetComponent<AudioSource>().clip = arsenalWapons[0].clipSource;
+            GetComponent<ShootingBehaviour>().shotType = arsenalWapons[0].bulletType;
+            GetComponent<ShootingBehaviour>().cadency = arsenalWapons[0].weapCadency;
         }
         else if (Input.GetButtonDown("Arsenal_1"))
         {
             _anim.SetLayerWeight(1, 1);
             GetComponent<AudioSource>().clip = arsenalWapons[1].clipSource;
+            GetComponent<ShootingBehaviour>().shotType = arsenalWapons[1].bulletType;
+            GetComponent<ShootingBehaviour>().cadency = arsenalWapons[1].weapCadency;
         }
     }
 }

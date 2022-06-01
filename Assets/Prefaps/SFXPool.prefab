@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1196801578891002240
+--- !u!1 &7707360205533602533
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1196801578891002242}
-  - component: {fileID: 1196801578891002243}
+  - component: {fileID: 2240318807709098090}
+  - component: {fileID: 2834506517321295469}
   m_Layer: 0
-  m_Name: SpitPool
+  m_Name: SFXPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1196801578891002242
+--- !u!4 &2240318807709098090
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196801578891002240}
+  m_GameObject: {fileID: 7707360205533602533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.557481, y: -0.99715906, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,22 +31,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1196801578891002243
+--- !u!114 &2834506517321295469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196801578891002240}
+  m_GameObject: {fileID: 7707360205533602533}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d7b43a1ccec1c54983050d2dedc39e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pooledLists:
-  - Name: Gapo
-    objectToPool: {fileID: 5674733341462532840, guid: cfcf01e32fb52204ea6da5d70281b0ae, type: 3}
+  - Name: PistolSFX
+    objectToPool: {fileID: 38486967852365098, guid: 211ee8b7e005aac4a972c656cff32a45, type: 3}
     amount: 15
-  - Name: Bullet
-    objectToPool: {fileID: 2255168964199559550, guid: 11d63653fe97fb84b91f7a2e83dd43a5, type: 3}
+  - Name: RifleSFX
+    objectToPool: {fileID: 7767850990118801453, guid: 3b60a6ac717633c47b718220ef86726c, type: 3}
     amount: 15

@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &456922532420646496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8823588639036700791}
+  - component: {fileID: 1841965818}
+  m_Layer: 12
+  m_Name: ZombieBody
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8823588639036700791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456922532420646496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6976033365374635258}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1841965818
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456922532420646496}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.37739325, y: -0.08641648}
+  serializedVersion: 2
+  m_Radius: 0.6520214
 --- !u!1 &6976033365374635248
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,8 +62,9 @@ GameObject:
   - component: {fileID: 6976033365374635263}
   - component: {fileID: 6976033365374635257}
   - component: {fileID: 6976033365374635262}
-  - component: {fileID: 938942757}
   - component: {fileID: 938942758}
+  - component: {fileID: 388131894214395204}
+  - component: {fileID: 4171258347477125936}
   m_Layer: 11
   m_Name: Zombie
   m_TagString: Untagged
@@ -34,7 +82,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.61, y: -4.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8823588639036700791}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -138,6 +187,9 @@ MonoBehaviour:
   pointsReward: 100
   attackDistance: 1.6
   attackDelay: 0.2
+  shotDistance: 8
+  shotSpeed: 2
+  spriteRotation: 0
 --- !u!61 &6976033365374635257
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -185,22 +237,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &938942757
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6976033365374635248}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.37739325, y: -0.08641648}
-  serializedVersion: 2
-  m_Radius: 0.6520214
 --- !u!58 &938942758
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -211,9 +247,40 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.21424007, y: -0.114261866}
+  m_Offset: {x: -0.22400904, y: -0.114261866}
   serializedVersion: 2
-  m_Radius: 0.42357945
+  m_Radius: 0.3291459
+--- !u!114 &388131894214395204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6976033365374635248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da569d257a8bafb4e8ec4517fb418d37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 1
+  health: 0
+--- !u!114 &4171258347477125936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6976033365374635248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ea7604041e6f649b84353a36910d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cadency: 2
+  BulletPool: {fileID: 1196801578891002240, guid: 021437b2b82511b429bc06c8adedd5c3, type: 3}
+  shotType: Vomit
+  gunPosition: {x: 0, y: 0, z: 0}
+  shooted: 0
