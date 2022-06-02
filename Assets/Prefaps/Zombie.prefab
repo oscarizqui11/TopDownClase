@@ -185,10 +185,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   pointsReward: 100
+  atkDamage: 1
   attackDistance: 1.6
   attackDelay: 0.2
-  shotDistance: 8
-  shotSpeed: 2
+  shotDistance: 9
+  shotSpeed: 3
   spriteRotation: 0
 --- !u!61 &6976033365374635257
 BoxCollider2D:
@@ -279,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ea7604041e6f649b84353a36910d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cadency: 2
+  cadency: 3
   BulletPool: {fileID: 1196801578891002240, guid: 021437b2b82511b429bc06c8adedd5c3, type: 3}
   shotType: Vomit
   gunPosition: {x: 0, y: 0, z: 0}

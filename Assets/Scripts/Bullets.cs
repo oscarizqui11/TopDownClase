@@ -46,14 +46,23 @@ public class Bullets : MonoBehaviour
         Destroy(gameObject);
     }*/
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<HealthBehaviour>(out HealthBehaviour target))
+        {
+            target.TakeDamage(damage);
+            gameObject.SetActive(false);
+        }
+    }
+
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.TryGetComponent<HealthBehaviour>(out HealthBehaviour target))
         {
             target.TakeDamage(damage);
             gameObject.SetActive(false);
         }
-    }
+    }*/
 
     private void OnTriggerExit2D(Collider2D collision)
     {

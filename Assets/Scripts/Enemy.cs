@@ -5,8 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     Vector3 nextPointDir;
+
+    
     public GameObject player;
+
     public int pointsReward;
+    public int atkDamage;
     public float attackDistance;
     public float attackDelay;
     public float shotDistance;
@@ -22,6 +26,9 @@ public class Enemy : MonoBehaviour
     private bool isWalking;
     private bool isAttacking;
 
+    
+    private Vector3 playerDeath;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +38,7 @@ public class Enemy : MonoBehaviour
         _sprt = GetComponent<SpriteRenderer>();
         _shb = GetComponent<ShootingBehaviour>();
         player = GameObject.Find("Survivor");
+        playerDeath = player.transform.position;
         nextPointDir = player.transform.position - transform.position;
         nextPointDir.Normalize();
         mv.RotateDirection(nextPointDir, 0);
@@ -40,69 +48,77 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        _sprt.sortingOrder = (int)((transform.position.y - player.transform.position.y) * -100);
+        _sprt.sortingOrder = (int)((transform.position.y - Camera.main.transform.position.y) * -100);
     }
 
     private void FixedUpdate()
     {
-        nextPointDir = player.transform.position - transform.position;
-        if (player != null)
+        if(player != null)
         {
-            if(IsInShotDistance())
-            {
-                if(shotTimer >= shotSpeed)
-                {
-                    _anim.SetTrigger("Shot");
-                    _shb.Shoot();
-                    shotTimer = 0;
-                }
-                else
-                {
-                    shotTimer += Time.fixedDeltaTime;
-                    _anim.SetBool("Walk", false);
-                    _anim.SetBool("Attack", false);
-                }
+            playerDeath = player.transform.position;
+        }
 
+        nextPointDir = playerDeath - transform.position;        
+        
+            
+        if(IsInShotDistance() && transform.position.y > playerDeath.y)
+        {
+            if(shotTimer >= shotSpeed)
+            {
+                _anim.SetTrigger("Shot");
+                _shb.Shoot();
+                shotTimer = 0;
             }
             else
             {
-                //nextPointDir.Normalize();
-                if (!IsPlayerReached())
-                {
-                    _anim.SetBool("Walk", true);
-                    _anim.SetBool("Attack", false);
-                    nextPointDir.Normalize();
-                    mv.MoveTowards(nextPointDir);
-                }
-                else
-                {
-                    _anim.SetBool("Walk", false);
-                    _anim.SetBool("Attack", true);
-                }
-                nextPointDir.Normalize();
-                mv.RotateDirection(nextPointDir, 0);
+                shotTimer += Time.fixedDeltaTime;
+                _anim.SetBool("Walk", false);
+                _anim.SetBool("Attack", false);
             }
+
         }
         else
         {
-            _anim.SetBool("Walk", false);
-            _anim.SetBool("Attack", false);
+            //nextPointDir.Normalize();
+            if (!IsPlayerReached())
+            {
+                _anim.SetBool("Walk", true);
+                _anim.SetBool("Attack", false);
+                nextPointDir.Normalize();
+                mv.MoveTowards(nextPointDir);
+            }
+            else
+            {
+                _anim.SetBool("Walk", false);
+                _anim.SetBool("Attack", true);
+            }
+            nextPointDir.Normalize();
+            mv.RotateDirection(nextPointDir, 0);
         }
+        
     }
 
     private bool IsPlayerReached()
     {
-        return Vector3.Distance(transform.position, player.transform.position) <= attackDistance;
+        return Vector3.Distance(transform.position, playerDeath) <= attackDistance;
     }
 
     private bool IsInShotDistance()
     {
-        return Vector3.Distance(transform.position, player.transform.position) >= shotDistance;
+        return Vector3.Distance(transform.position, playerDeath) >= shotDistance;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         _rb2d.velocity = new Vector2 (_rb2d.velocity.x * 0.3f, _rb2d.velocity.y * 0.3f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.TryGetComponent<PlayerController>(out PlayerController target))
+        {
+            target.GetComponent<HealthBehaviour>().TakeDamage(atkDamage);
+        }
     }
 
     /*private Vector3 NextPosition()
