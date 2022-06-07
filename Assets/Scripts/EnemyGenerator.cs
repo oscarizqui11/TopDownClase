@@ -6,15 +6,18 @@ public class EnemyGenerator : MonoBehaviour
 {
 
     public GameObject EnemyUnits;
+    public TimerBehaviour _timer;
     public float minDelayEnemy;
     public float maxDelayEnemy;
 
     private float delayEnemy;
     private float time;
+    private PlayerController _player;
 
     // Start is called before the first frame update
     void Start()
     {
+        _player = FindObjectOfType<PlayerController>();
         delayEnemy = Random.Range(minDelayEnemy, maxDelayEnemy);
         time = 0;
     }
@@ -24,7 +27,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         time = time + Time.deltaTime;
         
-        if(time >= delayEnemy)
+        if(time >= delayEnemy + _timer.timeLimit / 100 && _player.gameObject.activeInHierarchy)
         {
             time = 0;
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public int spriteRotation;
+    public Vector3 spawnPosition;
 
     private Animator _anim;
     private SpriteRenderer _sprt;
@@ -15,6 +16,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 cameraDir;
 
     private ShootingBehaviour _shb;
+
+    private bool invincible = false;
+    public float invincibilityTime;
+    private float invincibilityTimer;
 
     // Start is called before the first frame update
     void Awake()
@@ -70,6 +75,31 @@ public class PlayerController : MonoBehaviour
         {
             mainCamera.GetComponent<MovementBehavior>().MoveTowards(cameraDir);
         }
-        //mainCamera.GetComponent<MovementBehavior>().MoveTowards(new Vector3(0, direction.normalized.y));
+
+        if (invincible)
+        {
+            if (invincibilityTimer >= 0)
+            {
+                invincibilityTimer -= Time.fixedDeltaTime;
+            }
+            else
+            {
+                invincible = false;
+                _anim.SetLayerWeight(2, 0);
+            }
+        }
+    }
+
+    public void Respawn()
+    {
+        transform.position = new Vector3(mainCamera.transform.position.x + spawnPosition.x, mainCamera.transform.position.y + spawnPosition.y, 0);
+        invincible = true;
+        invincibilityTimer = invincibilityTime;
+        _anim.SetLayerWeight(2, 1);
+    }
+
+    public bool IsInvincible()
+    {
+        return invincible;
     }
 }

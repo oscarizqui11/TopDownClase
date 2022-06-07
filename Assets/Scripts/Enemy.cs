@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Enemy : MonoBehaviour
 {
     Vector3 nextPointDir;
 
     
-    public GameObject player;
+    public PlayerController player;
 
     public int pointsReward;
     public int atkDamage;
@@ -23,11 +24,14 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer _sprt;
     private ShootingBehaviour _shb;
     private float shotTimer;
-    private bool isWalking;
-    private bool isAttacking;
+
+    private Vector3 corpsePosition;
+    private bool eatCorpse;
 
     
     private Vector3 playerDeath;
+
+    public static Action<bool> EatCorpse = delegate { };
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +41,7 @@ public class Enemy : MonoBehaviour
         _rb2d = GetComponent<Rigidbody2D>();
         _sprt = GetComponent<SpriteRenderer>();
         _shb = GetComponent<ShootingBehaviour>();
-        player = GameObject.Find("Survivor");
+        player = GameObject.Find("Survivor").GetComponent<PlayerController>();
         playerDeath = player.transform.position;
         nextPointDir = player.transform.position - transform.position;
         nextPointDir.Normalize();
@@ -53,14 +57,13 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(player != null)
+        if(!player.IsInvincible())
         {
             playerDeath = player.transform.position;
         }
 
         nextPointDir = playerDeath - transform.position;        
         
-            
         if(IsInShotDistance() && transform.position.y > playerDeath.y)
         {
             if(shotTimer >= shotSpeed)
@@ -94,8 +97,7 @@ public class Enemy : MonoBehaviour
             }
             nextPointDir.Normalize();
             mv.RotateDirection(nextPointDir, 0);
-        }
-        
+        }    
     }
 
     private bool IsPlayerReached()
@@ -118,6 +120,7 @@ public class Enemy : MonoBehaviour
         if(collision.TryGetComponent<PlayerController>(out PlayerController target))
         {
             target.GetComponent<HealthBehaviour>().TakeDamage(atkDamage);
+            EatCorpse(true);
         }
     }
 
