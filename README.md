@@ -4,6 +4,6 @@
  
  # Controls:
  
- Move: W, A, S, D
- Shoot: Left Click
- Quit: Escape   
+ Move: W, A, S, D  
+ Shoot: Left Click  
+ Quit: Escape  
